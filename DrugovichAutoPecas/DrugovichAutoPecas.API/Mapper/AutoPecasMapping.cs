@@ -10,6 +10,7 @@ namespace DrugovichAutoPecas.API.Mapper
         {
             CreateMap<Cliente, ClienteDTO>().ReverseMap();
             CreateMap<Grupo, GrupoDTO>().ReverseMap();
+            CreateMap<Gerente, GerenteDTO>().ReverseMap();
         }
     }
 }

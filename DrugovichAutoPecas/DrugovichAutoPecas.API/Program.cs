@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AutoPecasContext>(opt => opt.UseInMemoryDatabase("DrugovichTestDb"));
-builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
 // Auto Mapper Configurations
 var mapperConfig = new MapperConfiguration(x =>
