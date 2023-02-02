@@ -4,6 +4,7 @@ using DrugovichAutoPecas.API.DTO;
 using DrugovichAutoPecas.API.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace DrugovichAutoPecas.API.Controllers
 {
@@ -53,6 +54,7 @@ namespace DrugovichAutoPecas.API.Controllers
         }
 
         [HttpGet]
+        [Route("clientes")]
         public async Task<IActionResult> GetAllClientes()
         {
             try
@@ -91,7 +93,13 @@ namespace DrugovichAutoPecas.API.Controllers
         [HttpPost]
         [Route("cliente")]
         public async Task<IActionResult> AddCliente([FromBody] ClienteDTO clienteDTO)
-        {
+        {            
+            if (clienteDTO.Id < 0)
+                return BadRequest("Identificador de cliente inválido.");
+            clienteDTO.Cnpj = Regex.Replace(clienteDTO.Cnpj, @"[^\d]+", string.Empty);
+            if (clienteDTO.Cnpj.Length != 14)
+                return BadRequest("Número CNPJ inválido.");
+
             Cliente cliente = _mapper.Map<Cliente>(clienteDTO);
             try
             {
