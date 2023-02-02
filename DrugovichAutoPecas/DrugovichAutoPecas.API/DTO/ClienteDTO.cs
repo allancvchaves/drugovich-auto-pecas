@@ -1,6 +1,8 @@
-﻿namespace DrugovichAutoPecas.API.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DrugovichAutoPecas.API.DTO
 {
-    public class Cliente
+    public class ClienteDTO
     {
         public int Id { get; set; }
         public string Cnpj { get; set; }
